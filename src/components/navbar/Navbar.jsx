@@ -1,8 +1,24 @@
 import React from "react";
 import Logo from "../logo/Logo";
 import { Link, NavLink } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+
+  const {user,logOutUser} = useAuth();
+
+  const handleLogout = () =>{
+    logOutUser()
+     .then((result) => {
+        console.log(result.user)
+    }).catch((err) => {
+        console.log(err)
+    });
+  }
+
+ 
+
+
   const links = (
     <>
       <li>
@@ -44,15 +60,20 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="  text-xl">
-          <Logo />
-        </a>
+        <Link to={`/`} className="  text-xl">
+         <Logo />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link className=" px-3 py-2 rounded-xl bg-secondary text-primary">Login</Link>
+
+      {
+        user? 
+        <Link  onClick={handleLogout} className=" px-3 py-2 rounded-xl bg-secondary text-primary">Log out</Link>
+        :<Link to={`/account/login`} className=" px-3 py-2 rounded-xl bg-secondary text-primary">Login</Link>
+      }
       </div>
     </div>
   );

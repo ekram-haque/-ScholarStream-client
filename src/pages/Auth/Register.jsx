@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router";
 
 const Register = () => {
   const {
@@ -22,7 +23,7 @@ const Register = () => {
         console.log(err)
     });
 
-    
+
 
   };
 
@@ -111,6 +112,8 @@ const Register = () => {
             
             <button class="btn btn-neutral mt-4">Register</button>
           </fieldset>
+          <p>don't have an account <Link to={`/account/login`} className="text-secondary hover:underline hover:font-bold">Login</Link></p>
+
         </form>
       </div>
     </div>

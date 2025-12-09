@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../../public/scholarstrem-logo.png'
+import { Link } from 'react-router';
 
 const Logo = () => {
     return (
